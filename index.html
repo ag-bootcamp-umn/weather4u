@@ -1,23 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>weather4u</title>
 </head>
-<body>
+
+<body data-bs-theme="dark">
 
     <header class="header">
         <nav class="navbar bg-body-tertiary">
-            <div class="container-fluid">
-              <span class="navbar-brand mb-0 h1">Weather 4 U</span>
+            <div class="container">
+                <h1 class="mb-0 h1">Weather-4-U</h1>
             </div>
-          </nav>
+        </nav>
     </header>
-    
+    <main class="container my-5">
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-3">
+                <!-- Input form to search for a city -->
+                <form class="search-city mb-4">
+                    <div class="input-group mb-1">
+                        <input type="text" class="form-control" placeholder="Search for a city"
+                            aria-label="Search for a city" aria-describedby="searchCity">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                    </div>
+                    <div class="hidden input-group mb-1 cityOptions">
+                    </div>
+                </form>
+                <!-- card to display search history -->
+                <div class="card border-dark mb-3">
+                    <div class="card-header">Search History</div>
+                    <div class="card-body">
+                        <!-- <button></button> -->
+                    </div>
+                  </div>
+            </div>
+
+            <div class="col-12 com-md-6 col-lg-9">
+                <div class="city card border-dark mb-4">
+                    <div class="city__header card-header">Header</div>
+                    <div class="city__body card-body">
+                      <h5 class="city__title card-title">Dark card title</h5>
+                      <p class="city__text card-text">Some quick example.</p>
+                    </div>
+                  </div>
+
+                  <div class="forecast">
+                    
+                  </div>
+            </div>
+        </div>
+    </main>
+
     <!-- Bootstrap scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
