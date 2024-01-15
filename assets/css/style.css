@@ -1,3 +1,11 @@
 .hidden {
     display: none;
 }
+
+.option-btn {
+    transition: all .3s;
+}
+
+.option-btn:hover {
+    opacity: .5;
+}
