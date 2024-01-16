@@ -25,17 +25,19 @@ $(document).ready(function () {
     let optionIndex = $(this).attr("data-index");
     let city = weather4U.searchResults[optionIndex];
     weather4U.searchResults = [];
-    getCity(city);
+    getCity(city, true);
   });
   $(searchHistoryCard).on("click", ".saved-search", function() {
     let optionIndex = $(this).attr("data-index");
     let city = weather4U.searchHistory[optionIndex];
     weather4U.searchResults = [];
-    getCity(city);
+    getCity(city, false);
   });
   // $(searchHistory).on('click', '.option-btn', function)
 });
 
+
+// GET BASIC DATA FOR CITIES MATCHING THE INPUT; THROW THEM UP AS BUTTONS
 function getCityOptions(e) {
   e.preventDefault();
   $(cityOptions).html(""); // clears out the area where the search results will be displayed
@@ -63,9 +65,9 @@ function getCityOptions(e) {
   });
 }
 
-// User selects a city and clicks, invokes this function, passing in the city they clicked on, identifying it by the index within the 
-// Make an API call to get the 5-day forecast for the city
-function getCity(city) {
+
+// MAKE API CALL FOR A FORECAST BASED ON THE CITY THE USER SELECTED
+function getCity(city, save = false) {
   weather4U.selection.city = {};
   // let optionIndex = $(this).attr("data-index");
   // let city = weather4U.searchResults[optionIndex];
@@ -83,7 +85,7 @@ function getCity(city) {
       weather4U.selection.cityWeather = list;
 
       // save the data to our search history
-      saveSearch(city);
+      if (save === true) {saveSearch(city);}
 
       // let's have a look at what's going on in the city we selected...
       showWeather(city, weather4U.selection.cityWeather);
@@ -95,7 +97,10 @@ function getCity(city) {
   });
 }
 
+
+// SAVING THE CURRENT CITY TO THE SEARCH HISTORY
 function saveSearch(search) {
+  $(searchHistoryCard).html('');
   weather4U.searchHistory.push(search);
   if (weather4U.searchHistory.length > 0) {
     $.each(weather4U.searchHistory, function(i) {
@@ -107,6 +112,8 @@ function saveSearch(search) {
   }
 }
 
+
+// DISPLAYS TODAY'S WEATHER 
 function showWeather() {
     // Get all the data we need:
     const citySrc = weather4U.selection.cityWeather[0];
@@ -130,6 +137,7 @@ function showWeather() {
     showForecast();
 }
 
+//  GET THE FORECAST AND DISPLAY IT
 function showForecast() {
   // CLear out the html, justi n case...
   $(forecast).html('');
