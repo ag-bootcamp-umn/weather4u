@@ -9,3 +9,8 @@
 .option-btn:hover {
     opacity: .5;
 }
+
+.city__top {
+    display: flex;
+    align-items: center;
+}

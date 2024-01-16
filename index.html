@@ -22,10 +22,10 @@
     </header>
     <main class="container my-5">
         <div class="row">
-            <div class="col-12 col-lg-3">
-                <div class="row">
+            <div class="search-column col-12 col-lg-3">
+                <div class="search-form row">
                                     <!-- Input form to search for a city -->
-                    <form class="search-form mb-4 col-12 col-md-6 col-lg-12">
+                    <form class="mb-4 col-12 col-md-6 col-lg-12">
                         <div class="input-group mb-1">
                             <input type="text" class="search-input form-control" placeholder="Search for a city"
                                 aria-label="Search for a city" aria-describedby="searchCity">
@@ -35,9 +35,9 @@
                         </div>
                     </form>
                     <!-- card to display search history -->
-                    <div class="search-history card border-dark mb-3">
+                    <div class="card border-dark mb-3">
                         <div class="card-header">Search History</div>
-                        <div class="card-body">
+                        <div class="search-history card-body">
                             <!-- <button></button> -->
                         </div>
                       </div>
@@ -47,15 +47,13 @@
             </div>
 
             <div class="col-12 col-lg-9">
-                <div class="city card border-dark mb-4">
-                    <div class="city__header card-header">Header</div>
-                    <div class="city__body card-body">
-                      <h5 class="city__title card-title">Dark card title</h5>
-                      <p class="city__text card-text">Some quick example.</p>
-                    </div>
-                  </div>
-
-                  <div class="forecast">
+                <div class="row">
+                    <div class="card border-dark mb-4">
+                        <div class="card-header">Current Weather</div>
+                        <div class="city__display card-body"></div>
+                      </div>
+                </div>
+                  <div class="forecast row">
                     
                   </div>
             </div>
