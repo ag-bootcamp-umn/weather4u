@@ -39,8 +39,8 @@ $(document).ready(function () {
 
 // GET BASIC DATA FOR CITIES MATCHING THE INPUT; THROW THEM UP AS BUTTONS
 function getCityOptions(e) {
-  $(cityDisplay).html('');
-  $(forecast).html('');
+  $(cityDisplay).html('');   
+  $(forecast).html('');         // This line and above: clear out results sections
   e.preventDefault();
   $(cityOptions).html(""); // clears out the area where the search results will be displayed
   const searchName = $(searchInput).val(); // grabs the user input
