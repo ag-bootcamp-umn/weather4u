@@ -33,12 +33,14 @@ $(document).ready(function () {
     weather4U.searchResults = [];
     getCity(city, false);
   });
-  // $(searchHistory).on('click', '.option-btn', function)
+  $(cityDisplay).on('click', '.forecast-btn', showForecast);
 });
 
 
 // GET BASIC DATA FOR CITIES MATCHING THE INPUT; THROW THEM UP AS BUTTONS
 function getCityOptions(e) {
+  $(cityDisplay).html('');
+  $(forecast).html('');
   e.preventDefault();
   $(cityOptions).html(""); // clears out the area where the search results will be displayed
   const searchName = $(searchInput).val(); // grabs the user input
@@ -51,11 +53,10 @@ function getCityOptions(e) {
     dataType: "json",
     success: function (res) {
       weather4U.searchResults = res;
+      console.log(res);
       if (res.length === 0) $(cityOptions).html('<h5>No Matches</h5>')
       $.each(weather4U.searchResults, function (i, option) {
-        $(cityOptions).append(`
-          <button type="button" data-index="${i}" class="option-btn btn link-opacity-50-hover mb-2">${option.name}, ${option.state}</button>
-        `);
+        showButton(i, option, '.city-options', 'option-btn');
       });
       $(searchInput).val(""); // Clears the search form input
     },
@@ -65,13 +66,10 @@ function getCityOptions(e) {
   });
 }
 
-
 // MAKE API CALL FOR A FORECAST BASED ON THE CITY THE USER SELECTED
 function getCity(city, save = false) {
+  
   weather4U.selection.city = {};
-  // let optionIndex = $(this).attr("data-index");
-  // let city = weather4U.searchResults[optionIndex];
-  // weather4U.searchResults = [];
   $.ajax({
     url: `https://api.openweathermap.org/data/2.5/forecast?lat=${city.lat}&lon=${city.lon}&appid=${key}&units=imperial`,
     method: "GET",
@@ -103,11 +101,8 @@ function saveSearch(search) {
   $(searchHistoryCard).html('');
   weather4U.searchHistory.push(search);
   if (weather4U.searchHistory.length > 0) {
-    $.each(weather4U.searchHistory, function(i) {
-      console.log($(this));
-      $(searchHistoryCard).append(`
-      <button type="button" data-index="${i}" class="saved-search btn btn-light link-opacity-50-hover mb-2">${$(this)[0].name}, ${$(this)[0].state}</button>
-      `);
+    $.each(weather4U.searchHistory, function(i, option) {
+      showButton(i, option, '.search-history', 'saved-search')
     });
   }
 }
@@ -131,10 +126,10 @@ function showWeather() {
         <p>Temp: ${Math.round(temp)} &deg;F</p>
         <p>Humidity: ${humidity} %</p>
         <p>Wind Speed: ${windSpeed} mph</p>
-        
+        <button type="button" class="forecast-btn btn btn-outline-light link-opacity-50-hover mb-2">5-Day Forecast</button>
     `);
 
-    showForecast();
+    // showForecast();
 }
 
 //  GET THE FORECAST AND DISPLAY IT
@@ -152,10 +147,24 @@ function showForecast() {
     <div class="col-12 col-md-auto">
       <h5>${new Date($(this)[0].dt_txt).toLocaleDateString('en-US')}</h5>
       <img class="weather-icon" src="https://openweathermap.org/img/wn/${$(this)[0].weather[0].icon}@2x.png">
-      <p>Temp: ${$(this)[0].main.temp} &deg;F</p>
+      <p>Temp: ${Math.round($(this)[0].main.temp)} &deg;F</p>
       <p>Wind: ${$(this)[0].wind.speed} mph</p>
       <p>Humidity: ${$(this)[0].main.humidity} %</p>
     </div>
     `);
   });
+}
+
+
+// HELPER FUNCTIONS
+
+// Displays buttons
+function showButton(i, option, location, className) {
+  console.log(i, option, location, className)
+  console.log('showing')
+  const state = option.state? option.state : option.country;
+  const light = className === 'saved-search' ? ' btn-light' : '';
+  $(location).append(`
+  <button type="button" data-index="${i}" class="${className} btn${light} link-opacity-50-hover mb-2">${option.name}, ${state}</button>
+  `);
 }

@@ -4,6 +4,7 @@
 
 .option-btn {
     transition: all .3s;
+    text-align: left;
 }
 
 .option-btn:hover {
