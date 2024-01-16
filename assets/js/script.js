@@ -68,7 +68,7 @@ function getCityOptions(e) {
 
 // MAKE API CALL FOR A FORECAST BASED ON THE CITY THE USER SELECTED
 function getCity(city, save = false) {
-  
+  $(forecast).html(''); 
   weather4U.selection.city = {};
   $.ajax({
     url: `https://api.openweathermap.org/data/2.5/forecast?lat=${city.lat}&lon=${city.lon}&appid=${key}&units=imperial`,
